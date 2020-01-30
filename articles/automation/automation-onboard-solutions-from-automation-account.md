@@ -2,12 +2,8 @@
 title: Learn how to onboard Update Management, Change Tracking, and Inventory solutions in Azure Automation
 description: Learn how to onboard an Azure Virtual machine with Update Management, Change Tracking, and Inventory solutions that are part of Azure Automation
 services: automation
-ms.service: automation
-author: georgewallace
-ms.author: gwallace
 ms.date: 4/11/2019
 ms.topic: conceptual
-manager: carmonm
 ms.custom: mvc
 ---
 # Onboard Update Management, Change Tracking, and Inventory solutions
@@ -57,7 +53,7 @@ If the selected workspace already has the solution, the solution isn't re-deploy
 
 When a computer is added to the Update Management or the Change Tracking and Inventory solutions, they're added to one of two saved searches in your workspace. These saved searches are queries that contain the computers that are targeted for these solutions.
 
-Navigate to your Automation account and select **Saved searches** under **General**. The two saved searches used by these solutions can be seen in the following table:
+Navigate to your Log Analytics workspace and select **Saved searches** under **General**. The two saved searches used by these solutions can be seen in the following table:
 
 |Name     |Category  |Alias  |
 |---------|---------|---------|
@@ -97,6 +93,8 @@ To enable the solution for all available machines, select **Enable on all availa
 ### All available and future machines
 
 To enable the solution for all available machines and future machines, select **Enable on all available and future machines**. This option deletes the saved searches and Scope Configurations from the workspace. This action opens the solution to all Azure and non-Azure machines that are reporting to the workspace. When selected, this action disables the **Manage Machines** button permanently as there's no Scope Configuration left.
+
+You can add the Scope Configurations back by adding the initial saved searches back. For more information, see [Saved searches](#saved-searches).
 
 ### Selected machines
 
@@ -140,6 +138,13 @@ If you used the Start and Stop VMs during off-hours solution, optionally you may
 * Variables
 
 Alternatively you can also unlink your workspace from your Automation Account from your Log Analytics workspace. On your workspace, select **Automation Account** under **Related Resources**. On the Automation Account page, select **Unlink account**.
+
+## Clean up resources
+
+To remove a VM from Update Management:
+
+* In your Log Analytics workspace, remove the VM from the saved search for the Scope Configuration `MicrosoftDefaultScopeConfig-Updates`. Saved searches can be found under **General** in your workspace.
+* Remove the [Microsoft Monitoring agent](../azure-monitor/learn/quick-collect-windows-computer.md#clean-up-resources) or the [Log Analytics agent for Linux](../azure-monitor/learn/quick-collect-linux-computer.md#clean-up-resources).
 
 ## Next steps
 

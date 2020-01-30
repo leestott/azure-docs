@@ -1,19 +1,10 @@
 ---
-title: Configure PHP apps - Azure App Service | Microsoft Docs 
-description: Learn how to configure PHP apps to work in Azure App Service
-services: app-service
-documentationcenter: ''
-author: cephalin
-manager: jpconnock
-editor: ''
+title: Configure PHP apps
+description: Learn how to configure a pre-built PHP container for your app. This article shows the most common configuration tasks. 
 
-ms.service: app-service
-ms.workload: na
-ms.tgt_pltfrm: na
-ms.devlang: dotnet
+ms.devlang: php
 ms.topic: article
 ms.date: 03/28/2019
-ms.author: cephalin
 
 ---
 
@@ -164,7 +155,7 @@ Redeploy your app with the changes and restart it. If you deploy it with Kudu (f
 
 As an alternative to using *.htaccess*, you can use [ini_set()](https://www.php.net/manual/function.ini-set.php) in your app to customize these non-PHP_INI_SYSTEM directives.
 
-### Customize PHP_INI_SYSTEM directives
+### <a name="customize-php_ini_system-directives"></a>Customize PHP_INI_SYSTEM directives
 
 To customize PHP_INI_SYSTEM directives (see [php.ini directives](https://www.php.net/manual/ini.list.php)), you can't use the *.htaccess* approach. App Service provides a separate mechanism using the `PHP_INI_SCAN_DIR` app setting.
 
@@ -176,7 +167,7 @@ az webapp config appsettings set --name <app-name> --resource-group <resource-gr
 
 `/usr/local/etc/php/conf.d` is the default directory where *php.ini* exists. `/home/site/ini` is the custom directory in which you'll add a custom *.ini* file. You separate the values with a `:`.
 
-Navigate to the web SSH session with your Linux container (`https://cephalin-container.scm.azurewebsites.net/webssh/host`).
+Navigate to the web SSH session with your Linux container (`https://<app-name>.scm.azurewebsites.net/webssh/host`).
 
 Create a directory in `/home/site` called `ini`, then create an *.ini* file in the `/home/site/ini` directory (for example, *settings.ini)* with the directives you want to customize. Use the same syntax you would use in a *php.ini* file. 
 

@@ -1,6 +1,6 @@
 ---
-title: Map style functionalities in Azure Maps| Microsoft Docs
-description: Learn about Azure Maps style related functionalities for Android SDK.
+title: Set a map style using Azure Maps Android SDK| Microsoft Azure Maps
+description: In this article, you will learn about Microsoft Azure Maps style related functionalities for the Android SDK.
 author: walsehgal
 ms.author: v-musehg
 ms.date: 04/26/2019
@@ -57,7 +57,7 @@ The `mapcontrol_style` attribute above sets the map style to **grayscale_dark**.
 Map style can be set in the activity class. Copy the following code snippet into the **onCreate()** method of your `MainActivity.java` class. This will set the map style to **satellite_road_labels**.
 
 ```Java
-    mapControl.onReady(map -> {
+mapControl.onReady(map -> {
     //Set the camera of the map.
     map.setCamera(center(47.64, -122.33), zoom(14));
 

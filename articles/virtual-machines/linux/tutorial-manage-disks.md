@@ -1,16 +1,15 @@
 ---
-title: Tutorial - Manage Azure disks with the Azure CLI | Microsoft Docs
+title: Tutorial - Manage Azure disks with the Azure CLI 
 description: In this tutorial, you learn how to use the Azure CLI to create and manage Azure disks for virtual machines
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: cynthn
-manager: jeconnoc
+manager: gwallace
 editor: tysonn
 tags: azure-resource-manager
 
 ms.assetid: 
 ms.service: virtual-machines-linux
-ms.devlang: na
 ms.topic: tutorial
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
@@ -46,7 +45,7 @@ When an Azure virtual machine is created, two disks are automatically attached t
 
 ## Azure data disks
 
-To install applications and store data, additional data disks can be added. Data disks should be used in any situation where durable and responsive data storage is desired. The size of the virtual machine determines how many data disks can be attached to a VM. For each VM vCPU, four data disks can be attached.
+To install applications and store data, additional data disks can be added. Data disks should be used in any situation where durable and responsive data storage is desired. The size of the virtual machine determines how many data disks can be attached to a VM.
 
 ## VM disk types
 
@@ -103,7 +102,7 @@ To create and attach a new disk to an existing virtual machine, use the [az vm d
 az vm disk attach \
     --resource-group myResourceGroupDisk \
     --vm-name myVM \
-    --disk myDataDisk \
+    --name myDataDisk \
     --size-gb 128 \
     --sku Premium_LRS \
     --new
@@ -252,7 +251,7 @@ Use the [az vm disk attach](/cli/azure/vm/disk#az-vm-disk-attach) command to att
 az vm disk attach \
    –g myResourceGroupDisk \
    --vm-name myVM \
-   --disk $datadisk
+   --name $datadisk
 ```
 
 ## Next steps

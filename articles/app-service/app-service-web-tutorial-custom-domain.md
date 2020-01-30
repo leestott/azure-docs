@@ -1,21 +1,12 @@
 ---
-title: Map existing custom DNS name - Azure App Service | Microsoft Docs 
+title: 'Tutorial: Map existing custom DNS name'
 description: Learn how to add an existing custom DNS domain name (vanity domain) to a web app, mobile app backend, or API app in Azure App Service.
 keywords: app service, azure app service, domain mapping, domain name, existing domain, hostname
-services: app-service\web
-documentationcenter: nodejs
-author: cephalin
-manager: erikre
-editor: ''
 
 ms.assetid: dc446e0e-0958-48ea-8d99-441d2b947a7c
-ms.service: app-service-web
-ms.workload: web
-ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: tutorial
-ms.date: 06/06/201
-ms.author: cephalin
+ms.date: 06/06/2019
 ms.custom: mvc
 ms.custom: seodec18
 
@@ -57,15 +48,19 @@ To map a custom DNS name to a web app, the web app's [App Service plan](https://
 
 Open the [Azure portal](https://portal.azure.com) and sign in with your Azure account.
 
-### Navigate to the app in the Azure portal
+### Select the app in the Azure portal
 
-From the left menu, select **App Services**, and then select the name of the app.
+Search for and select **App Services**.
+
+![Select App Services](./media/app-service-web-tutorial-custom-domain/app-services.png)
+
+On the **App Services** page, select the name of your Azure app.
 
 ![Portal navigation to Azure app](./media/app-service-web-tutorial-custom-domain/select-app.png)
 
 You see the management page of the App Service app.  
 
-<a name="checkpricing"></a>
+<a name="checkpricing" aria-hidden="true"></a>
 
 ### Check the pricing tier
 
@@ -79,7 +74,7 @@ The app's current tier is highlighted by a blue border. Check to make sure that 
 
 If the App Service plan is not in the **F1** tier, close the **Scale up** page and skip to [Map a CNAME record](#cname).
 
-<a name="scaleup"></a>
+<a name="scaleup" aria-hidden="true"></a>
 
 ### Scale up the App Service plan
 
@@ -93,7 +88,7 @@ When you see the following notification, the scale operation is complete.
 
 ![Scale operation confirmation](./media/app-service-web-tutorial-custom-domain/scale-notification.png)
 
-<a name="cname"></a>
+<a name="cname" aria-hidden="true"></a>
 
 ## Map your domain
 
@@ -153,13 +148,13 @@ It might take some time for the new custom domain to be reflected in the app's *
 ![CNAME record added](./media/app-service-web-tutorial-custom-domain/cname-record-added.png)
 
 > [!NOTE]
-> A **Note Secure** label for your custom domain means that it's not yet bound to an SSL certificate, and any HTTPS request from a browser to your custom domain will receive and error or warning, depending on the browser. To add an SSL binding, see [Bind an existing custom SSL certificate to Azure App Service](app-service-web-tutorial-custom-ssl.md).
+> A **Not Secure** label for your custom domain means that it's not yet bound to an SSL certificate, and any HTTPS request from a browser to your custom domain will receive and error or warning, depending on the browser. To add an SSL binding, see [Secure a custom DNS name with an SSL binding in Azure App Service](configure-ssl-bindings.md).
 
 If you missed a step or made a typo somewhere earlier, you see a verification error at the bottom of the page.
 
 ![Verification error](./media/app-service-web-tutorial-custom-domain/verification-error-cname.png)
 
-<a name="a"></a>
+<a name="a" aria-hidden="true"></a>
 
 ### Map an A record
 
@@ -210,7 +205,7 @@ When the records are added, the DNS records page looks like the following exampl
 
 ![DNS records page](./media/app-service-web-tutorial-custom-domain/a-record.png)
 
-<a name="enable-a"></a>
+<a name="enable-a" aria-hidden="true"></a>
 
 #### Enable the A record mapping in the app
 
@@ -237,13 +232,13 @@ It might take some time for the new custom domain to be reflected in the app's *
 ![A record added](./media/app-service-web-tutorial-custom-domain/a-record-added.png)
 
 > [!NOTE]
-> A **Note Secure** label for your custom domain means that it's not yet bound to an SSL certificate, and any HTTPS request from a browser to your custom domain will receive and error or warning, depending on the browser. To add an SSL binding, see [Bind an existing custom SSL certificate to Azure App Service](app-service-web-tutorial-custom-ssl.md).
+> A **Not Secure** label for your custom domain means that it's not yet bound to an SSL certificate, and any HTTPS request from a browser to your custom domain will receive and error or warning, depending on the browser. To add an SSL binding, see [Secure a custom DNS name with an SSL binding in Azure App Service](configure-ssl-bindings.md).
 
 If you missed a step or made a typo somewhere earlier, you see a verification error at the bottom of the page.
 
 ![Verification error](./media/app-service-web-tutorial-custom-domain/verification-error.png)
 
-<a name="wildcard"></a>
+<a name="wildcard" aria-hidden="true"></a>
 
 ### Map a wildcard domain
 
@@ -292,7 +287,7 @@ Select the **+** icon again to add another custom domain that matches the wildca
 ![CNAME record added](./media/app-service-web-tutorial-custom-domain/cname-record-added-wildcard2.png)
 
 > [!NOTE]
-> A **Note Secure** label for your custom domain means that it's not yet bound to an SSL certificate, and any HTTPS request from a browser to your custom domain will receive and error or warning, depending on the browser. To add an SSL binding, see [Bind an existing custom SSL certificate to Azure App Service](app-service-web-tutorial-custom-ssl.md).
+> A **Note Secure** label for your custom domain means that it's not yet bound to an SSL certificate, and any HTTPS request from a browser to your custom domain will receive and error or warning, depending on the browser. To add an SSL binding, see [Secure a custom DNS name with an SSL binding in Azure App Service](configure-ssl-bindings.md).
 
 ## Test in browser
 
@@ -307,7 +302,7 @@ If you receive an HTTP 404 (Not Found) error when browsing to the URL of your cu
 - The custom domain configured is missing an A record and/or a CNAME record.
 - The browser client has cached the old IP address of your domain. Clear the cache and test DNS resolution again. On a Windows machine, you clear the cache with `ipconfig /flushdns`.
 
-<a name="virtualdir"></a>
+<a name="virtualdir" aria-hidden="true"></a>
 
 ## Migrate an active domain
 
@@ -323,7 +318,7 @@ At the bottom of the page, the root virtual directory `/` points to `site\wwwroo
 
 ![Customize virtual directory](./media/app-service-web-tutorial-custom-domain/customize-virtual-directory.png)
 
-Once the operation completes, your app should return the right page at the root path (for example, http://contoso.com).
+Once the operation completes, your app should return the right page at the root path (for example, `http://contoso.com`).
 
 ## Automate with scripts
 
@@ -371,4 +366,4 @@ In this tutorial, you learned how to:
 Advance to the next tutorial to learn how to bind a custom SSL certificate to a web app.
 
 > [!div class="nextstepaction"]
-> [Bind an existing custom SSL certificate to Azure App Service](app-service-web-tutorial-custom-ssl.md)
+> [Secure a custom DNS name with an SSL binding in Azure App Service](configure-ssl-bindings.md)

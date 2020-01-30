@@ -1,50 +1,59 @@
 ---
-title: include file
-description: include file
-services: functions
 author: ggailey777
-manager: jeconnoc
-ms.service: functions
+ms.service: azure-functions
 ms.topic: include
-ms.date: 04/16/2019
+ms.date: 01/12/2020
 ms.author: glenga
-ms.custom: include file
 ---
 
 ## Publish the project to Azure
 
-Visual Studio Code lets you publish your functions project directly to Azure. In the process, you create a function app and related resources in your Azure subscription. The function app provides an execution context for your functions. The project is packaged and deployed to the new function app in your Azure subscription.
+In this section, you create a function app and related resources in your Azure subscription and then deploy your code. 
 
-This article assumes that you are creating a new function app. 
+1. Choose the Azure icon in the Activity bar, then in the **Azure: Functions** area, choose the **Deploy to function app...** button.
 
-> [!IMPORTANT]
-> Publishing to an existing function app overwrites the content of that app in Azure.
+    ![Publish your project to Azure](media/functions-publish-project-vscode/function-app-publish-project.png)
 
-1. In the **Azure: Functions** area, select the Deploy to Function App icon.
+1. Provide the following information at the prompts:
 
-    ![Function app settings](./media/functions-publish-project-vscode/function-app-publish-project.png)
+    ::: zone pivot="programming-language-csharp,programming-language-powershell"
 
-1. If not signed-in, you are prompted to **Sign in to Azure**. You can also **Create a free Azure account**. After successful sign in from the browser, go back to Visual Studio Code. 
+    | Prompt | Value | Description |
+    | ------ | ----- | ----- |
+    | Select subscription | Your subscription | Shown when you have multiple subscriptions. |
+    | Select Function App in Azure | + Create new Function App | Publishing to an existing function app overwrites the content of that app in Azure. |
+    | Enter a globally unique name for the function app | Unique name | Valid characters for a function app name are `a-z`, `0-9`, and `-`. |
+    | Select a location for new resources | Region | Choose a [region](https://azure.microsoft.com/regions/) near you. | 
 
-1. If you have multiple subscriptions, **Select a subscription** for the function app, then choose **+ Create New Function App in Azure**.
+    ::: zone-end
 
-1. Type a globally unique name that identifies your function app and press Enter. Valid characters for a function app name are `a-z`, `0-9`, and `-`.
+    ::: zone pivot="programming-language-javascript,programming-language-typescript,programming-language-python"
 
-1. Choose **+ Create New Resource Group**, type a resource group name, like `myResourceGroup`, and press enter. You can also use an existing resource group.
+    | Prompt | Value | Description |
+    | ------ | ----- | ----- |
+    | Select subscription | Your subscription | Shown when you have multiple subscriptions. |
+    | Select Function App in Azure | + Create new Function App | Publishing to an existing function app overwrites the content of that app in Azure. |
+    | Enter a globally unique name for the function app | Unique name | Valid characters for a function app name are `a-z`, `0-9`, and `-`. |
+    | Select a runtime | Your version | Choose the language version you've been running on locally. |
+    | Select a location for new resources | Region | Choose a [region](https://azure.microsoft.com/regions/) near you. | 
 
-1. Choose **+ Create New Storage Account**, type a globally unique name of the new storage account used by your function app and press Enter. Storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only. You can also use an existing account.
+    ::: zone-end
 
-1. Choose a location in a [region](https://azure.microsoft.com/regions/) near you or near other services your functions access.
+    
+1.  When completed, the following Azure resources are created in your subscription:
 
-    When you press Enter, the following Azure resources are created in your subscription:
+    + **[Resource group](../articles/azure-resource-manager/management/overview.md)**: Contains all of the created Azure resources. The name is based on your function app name.
+    + **[Storage account](../articles//storage/common/storage-introduction.md#types-of-storage-accounts)**: A standard Storage account is created with a unique name that is based on your function app name.
+    + **[Hosting plan](../articles/azure-functions/functions-scale.md)**: A consumption plan is created in the West US region to host your serverless function app.
+    + **Function app**: Your project is deployed to and runs in this new function app.
+    + **[Application Insights]()**: An instance, which is connected to your function app, is created based on your function name.
 
-    * **[Resource group](../articles/azure-resource-manager/resource-group-overview.md)**: Contains all of the created Azure resources. The name is based on your function app name.
-    * **[Storage account](../articles/storage/common/storage-quickstart-create-account.md)**: A standard Storage account is created with a unique name that is based on your function app name.
-    * **[Hosting plan](../articles/azure-functions/functions-scale.md)**: A consumption plan is created in the West US region to host your serverless function app.
-    * **Function app**: Your project is deployed to and runs in this new function app.
+    A notification is displayed after your function app is created and the deployment package is applied. 
+    
+1. Select **View Output** in this notification to view the creation and deployment results, including the Azure resources that you created.
 
-    A notification is displayed after your function app is created and the deployment package is applied. Select **View Output** in this notification to view the creation and deployment results, including the Azure resources that you created.
+    ![Create complete notification](media/functions-publish-project-vscode/function-create-notifications.png)
 
-1. Back in the **Azure: Functions** area, expand the new function app under your subscription. Expand **Functions**, right-click **HttpTrigger**, and then choose **Copy function URL**.
+1. Back in the **Azure: Functions** area in the side bar, expand the new function app under your subscription. Expand **Functions**, right-click (Windows) or Ctrl + click (MacOS) on **HttpExample**, and then choose **Copy function URL**.
 
     ![Copy the function URL for the new HTTP trigger](./media/functions-publish-project-vscode/function-copy-endpoint-url.png)
